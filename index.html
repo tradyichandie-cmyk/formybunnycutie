@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry My Pretty Bunbun</title>
+<style>
+    body {
+        background: linear-gradient(to bottom, #fceabb, #f8b500);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #fff;
+        text-shadow: 2px 2px #d17f7f;
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .bouquet {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 20px;
+    }
+
+    .flower {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .petal {
+        position: absolute;
+        width: 20px;
+        height: 30px;
+        background: #fff;
+        border-radius: 50% 50% 0 0;
+        transform-origin: bottom center;
+    }
+
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-10px); background: #fff; }
+    .petal:nth-child(2) { transform: rotate(72deg) translateY(-10px); background: #fff; }
+    .petal:nth-child(3) { transform: rotate(144deg) translateY(-10px); background: #fff; }
+    .petal:nth-child(4) { transform: rotate(216deg) translateY(-10px); background: #fff; }
+    .petal:nth-child(5) { transform: rotate(288deg) translateY(-10px); background: #fff; }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        background: #ffdd00;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+    }
+
+    .stem {
+        position: absolute;
+        width: 4px;
+        height: 80px;
+        background: #4caf50;
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+
+    .ribbon {
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        background: #ff6f91;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-10deg);
+        border-radius: 10px;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>I'm sorry my pretty Bunbun, bad bad ako 🌼</h1>
+
+<div class="bouquet" id="bouquet">
+    <!-- Flowers will be generated here by JS -->
+</div>
+
+<script>
+    const bouquet = document.getElementById('bouquet');
+
+    for(let i = 0; i < 7; i++){
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+
+        // Create petals
+        for(let j = 0; j < 5; j++){
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            flower.appendChild(petal);
+        }
+
+        // Center
+        const center = document.createElement('div');
+        center.classList.add('center');
+        flower.appendChild(center);
+
+        // Stem
+        const stem = document.createElement('div');
+        stem.classList.add('stem');
+        flower.appendChild(stem);
+
+        // Ribbon (for bottom of bouquet)
+        if(i === Math.floor(7/2)){
+            const ribbon = document.createElement('div');
+            ribbon.classList.add('ribbon');
+            flower.appendChild(ribbon);
+        }
+
+        // Random float delay for each flower
+        flower.style.animationDelay = `${Math.random()*2}s`;
+        bouquet.appendChild(flower);
+    }
+</script>
+
+</body>
+</html>
